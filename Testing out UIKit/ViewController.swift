@@ -13,9 +13,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var field: UITextField!
     @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var slideBarRed: UISlider!
+    @IBOutlet weak var slideBarGreen: UISlider!
+    @IBOutlet weak var slideBarBlue: UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
         field.placeholder = "Enter Text"
+        slideBarRed.maximumValue = 1.0
+        slideBarBlue.maximumValue = 1.0
+        slideBarGreen.maximumValue = 1.0
+        slideBarGreen.minimumValue = 0
+        slideBarBlue.minimumValue = 0
+        slideBarRed.minimumValue = 0
     }
 
    

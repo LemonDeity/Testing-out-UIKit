@@ -35,6 +35,18 @@
                                     <action selector="ReturnKeyTapped:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="jG7-Bd-FVj"/>
                                 </connections>
                             </textField>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Na6-Ww-KUF">
+                                <rect key="frame" x="88" y="467" width="239" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7qU-7j-cC7">
+                                <rect key="frame" x="88" y="576" width="239" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YPK-Xu-cec">
+                                <rect key="frame" x="88" y="520" width="239" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -42,6 +54,9 @@
                     <connections>
                         <outlet property="Label" destination="llk-yS-K55" id="oLe-ha-vxG"/>
                         <outlet property="field" destination="GGY-hI-ETC" id="1wF-1E-sGu"/>
+                        <outlet property="slideBarBlue" destination="7qU-7j-cC7" id="gN4-aL-k8Z"/>
+                        <outlet property="slideBarGreen" destination="YPK-Xu-cec" id="zbl-mq-bBg"/>
+                        <outlet property="slideBarRed" destination="Na6-Ww-KUF" id="2ff-v3-R7y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
