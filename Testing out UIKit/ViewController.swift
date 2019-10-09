@@ -18,9 +18,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var slideBarBlue: UISlider!
     @IBOutlet weak var slideBarAlpha: UISlider!
     @IBOutlet weak var HexCode: UILabel!
+    @IBOutlet weak var rValue: UILabel!
+    @IBOutlet weak var gValue: UILabel!
+    @IBOutlet weak var bValue: UILabel!
+    @IBOutlet weak var Mode: UISwitch!
+    //on means RGB off means Hex
     override func viewDidLoad() {
         super.viewDidLoad()
-        field.placeholder = "Enter Text"
+        field.placeholder = "R:___ G:___ B:___"
         slideBarRed.maximumValue = 1.0
         slideBarBlue.maximumValue = 1.0
         slideBarGreen.maximumValue = 1.0
@@ -42,25 +47,34 @@ class ViewController: UIViewController {
 
    
     @IBAction func ReturnKeyTapped(_ sender: UITextField) {
-        Label.text = field.text
-        if let str = field.text{
-            detectKeyWord(input: str)
+        //rgb format will be R:___ G:___ B:___
+        if Mode.isOn{
+            field.placeholder = "R:___ G:___ B:___"
+        }else{
+            field.placeholder = "#FFFFFF"
         }
         field.resignFirstResponder()
     }
     
-    func detectKeyWord(input:String){
-        let functions:[String] = ["(",")","^","!","*","/","+","-"]
-        let lower = input.lowercased()
-        if lower.contains("change"){
-            //means we need to make a change
-            colorCheck(lower)
+    func changeRGBValues(){
+        if field.contains("R:" as! UIFocusEnvironment){
+            let rIndex = field.text.firstIndex(of: "R:")!
+            
+            
+        }else{
+            field.text = "Cannot Locate Red Value"
         }
         
-        for i in 0...functions.count-1{
-            if lower.contains(functions[i]){
-                mathDetected(input:lower)
-            }
+        if field.contains("G:" as! UIFocusEnvironment){
+            let gIndex = field.text?.range(of: "G:")
+        }else{
+            field.text = "Cannot Locate Green Value"
+        }
+        
+        if field.contains("B:" as! UIFocusEnvironment){
+            let bIndex = field.text?.range(of: "B:")
+        }else{
+            field.text = "Cannot Locate Blue Value"
         }
     }
     
@@ -106,6 +120,7 @@ class ViewController: UIViewController {
         let blueC:CGFloat = CGFloat(slideBarBlue.value)
         let alphaC:CGFloat = CGFloat(slideBarAlpha.value)
         Label.backgroundColor = UIColor(red: redC, green: greenC, blue: blueC, alpha: alphaC)
+        updateHexCode()
         
     }
     
@@ -119,21 +134,13 @@ class ViewController: UIViewController {
                     let strR = convertToHex(num: numR)
                     let strG = convertToHex(num: numG)
                     let strB = convertToHex(num: numB)
+                    print("Red : \(strR)")
+                    print("Green : \(strG)")
+                    print("Blue : \(strB)")
                     HexCode.text = "#\(strR)\(strG)\(strB)"
-                }
-            }
-        }
-        HexCode.text = "#"
-    }
-    
-    func colorCheck(_ lower:String){
-        let colors:[String] = ["red","blue","black","green","purple","white","yellow","orange","magenta"]
-        let uColor:[UIColor] = [.red,.blue,.black,.green,.purple,.white,.yellow,.orange,.magenta]
-        if lower.contains("color"){
-            for c in 0...colors.count-1{
-                if lower.contains(colors[c]){
-                    Label.backgroundColor = uColor[c]
-                    break
+                    rValue.text = "R : \(numR)"
+                    gValue.text = "G : \(numG)"
+                    bValue.text = "B : \(numB)"
                 }
             }
         }

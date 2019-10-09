@@ -70,6 +70,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="R : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpy-KI-lcA">
+                                <rect key="frame" x="333" y="465" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="G : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NM-Lf-4SU">
+                                <rect key="frame" x="333" y="524" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deC-8l-eYm">
+                                <rect key="frame" x="333" y="580" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bny-O7-zdD">
+                                <rect key="frame" x="29" y="354" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -77,7 +102,11 @@
                     <connections>
                         <outlet property="HexCode" destination="0ul-cz-R8K" id="2Tr-tU-B1q"/>
                         <outlet property="Label" destination="llk-yS-K55" id="oLe-ha-vxG"/>
+                        <outlet property="Mode" destination="Bny-O7-zdD" id="bGk-SY-XTc"/>
+                        <outlet property="bValue" destination="deC-8l-eYm" id="wgw-uD-3t0"/>
                         <outlet property="field" destination="GGY-hI-ETC" id="1wF-1E-sGu"/>
+                        <outlet property="gValue" destination="1NM-Lf-4SU" id="Cum-Ic-PKL"/>
+                        <outlet property="rValue" destination="qpy-KI-lcA" id="hFs-O2-9yF"/>
                         <outlet property="slideBarAlpha" destination="8BL-eu-tuw" id="P8Q-pl-0rT"/>
                         <outlet property="slideBarBlue" destination="7qU-7j-cC7" id="gN4-aL-k8Z"/>
                         <outlet property="slideBarGreen" destination="YPK-Xu-cec" id="zbl-mq-bBg"/>
