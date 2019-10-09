@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rValue: UILabel!
     @IBOutlet weak var gValue: UILabel!
     @IBOutlet weak var bValue: UILabel!
+    @IBOutlet weak var alphaValue: UILabel!
     @IBOutlet weak var Mode: UISwitch!
     //on means RGB off means Hex
     override func viewDidLoad() {
@@ -48,17 +49,12 @@ class ViewController: UIViewController {
    
     @IBAction func ReturnKeyTapped(_ sender: UITextField) {
         //rgb format will be R:___ G:___ B:___
-        if Mode.isOn{
-            field.placeholder = "R:___ G:___ B:___"
-        }else{
-            field.placeholder = "#FFFFFF"
-        }
         field.resignFirstResponder()
     }
     
     func changeRGBValues(){
         if field.contains("R:" as! UIFocusEnvironment){
-            let rIndex = field.text.firstIndex(of: "R:")!
+            let rIndex = field.text?.firstIndex(of: "R")!
             
             
         }else{
@@ -105,14 +101,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func mathDetected(input:String){
-        Label.text = input
-        if let num = Double("3.14159"){
-            print(num + 1)
-        }
-    }
-    
-    
     @IBAction func valueChange(_ sender: UISlider) {
         //if let redC = slideBarRed.value, let greenC = slideBarGreen.value, let blueC = slideBarBlue.value{}
         let redC:CGFloat = CGFloat(slideBarRed.value)
@@ -124,23 +112,40 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func modeChanged(_ sender: UISwitch) {
+        if Mode.isOn{
+            field.placeholder = "R:___ G:___ B:___"
+        }else{
+            field.placeholder = "#FFFFFF"
+        }
+    }
+    
+    @IBAction func exitKeyboard(_ sender: UIGestureRecognizer) {
+        field.resignFirstResponder()
+    }
+    
     func updateHexCode(){
         if let r:Float = slideBarRed?.value{
             if let g:Float = slideBarGreen?.value{
                 if let b:Float = slideBarBlue?.value{
-                    let numR = Int(r*255)
-                    let numG = Int(g*255)
-                    let numB = Int(b*255)
-                    let strR = convertToHex(num: numR)
-                    let strG = convertToHex(num: numG)
-                    let strB = convertToHex(num: numB)
-                    print("Red : \(strR)")
-                    print("Green : \(strG)")
-                    print("Blue : \(strB)")
-                    HexCode.text = "#\(strR)\(strG)\(strB)"
-                    rValue.text = "R : \(numR)"
-                    gValue.text = "G : \(numG)"
-                    bValue.text = "B : \(numB)"
+                    if let alpha:Float = slideBarAlpha?.value{
+                        let numR = Int(r*255)
+                        let numG = Int(g*255)
+                        let numB = Int(b*255)
+                        let numA = Int(alpha*255)
+                        let strR = convertToHex(num: numR)
+                        let strG = convertToHex(num: numG)
+                        let strB = convertToHex(num: numB)
+                        let strA = convertToHex(num: numA)
+                        print("Red : \(strR)")
+                        print("Green : \(strG)")
+                        print("Blue : \(strB)")
+                        HexCode.text = "#\(strR)\(strG)\(strB)\(strA)"
+                        rValue.text = "R : \(numR)"
+                        gValue.text = "G : \(numG)"
+                        bValue.text = "B : \(numB)"
+                        alphaValue.text = "Alpha: \(numA)"
+                    }
                 }
             }
         }
