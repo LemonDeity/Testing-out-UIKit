@@ -49,28 +49,109 @@ class ViewController: UIViewController {
    
     @IBAction func ReturnKeyTapped(_ sender: UITextField) {
         //rgb format will be R:___ G:___ B:___
+        if Mode.isOn{
+            changeRGBValues()
+        }else{
+            changeHexValue()
+        }
         field.resignFirstResponder()
     }
     
+    func changeHexValue(){
+        var redF = false, greenF = false, blueF = false,alphaF = false
+        var newRValue:Float = 0
+        var newGValue:Float = 0
+        var newBValue:Float = 0
+        var newAValue:Float = 0
+        if let input = field.text{
+            if input[input.startIndex]=="#"&&input.count==9{
+                newRValue = letterToNumber(str: input, index: 1)
+                newGValue = letterToNumber(str: input, index: 3)
+                newBValue = letterToNumber(str: input, index: 5)
+                newAValue = letterToNumber(str: input, index: 7)
+            }else{
+                redF.toggle()
+                greenF.toggle()
+                blueF.toggle()
+                alphaF.toggle()
+                print("Something isn't right")
+            }
+        }
+        
+        if redF||greenF||blueF{
+            var errorMessage = "ERROR-Cannot find "
+            if redF{
+                errorMessage += "Red "
+            }
+            
+            if greenF{
+                errorMessage += "Green "
+            }
+            
+            if blueF{
+                errorMessage += "Blue "
+            }
+            
+            if alphaF{
+                errorMessage += "Alpha"
+            }
+            print(errorMessage)
+        }else{
+            slideBarRed.value = newRValue
+            slideBarGreen.value = newGValue
+            slideBarBlue.value = newBValue
+            slideBarAlpha.value = newAValue
+            valueChange(slideBarBlue)
+        }
+    }
+    
     func changeRGBValues(){
-        if field.contains("R:" as! UIFocusEnvironment){
-            let rIndex = field.text?.firstIndex(of: "R")!
+        var redF = false, greenF = false, blueF = false
+        var newRValue:Float = 0
+        var newGValue:Float = 0
+        var newBValue:Float = 0
+        if let input = field.text{
             
+            if input.contains("R:"){
+                //offsetBy start = 2
+                newRValue = updateFromKeyboard(input: input, offsetStart: 2)
+            }else{
+                redF.toggle()
+            }
             
-        }else{
-            field.text = "Cannot Locate Red Value"
+            if input.contains("G:"){
+                //offsetStart = 8
+                newGValue = updateFromKeyboard(input: input, offsetStart: 8)
+            }else{
+                greenF.toggle()
+            }
+            
+            if input.contains("B:"){
+                //offsetStart = 14
+                newBValue = updateFromKeyboard(input: input, offsetStart: 14)
+            }else{
+                blueF.toggle()
+            }
         }
-        
-        if field.contains("G:" as! UIFocusEnvironment){
-            let gIndex = field.text?.range(of: "G:")
+        if redF||greenF||blueF{
+            var errorMessage = "ERROR-Cannot find "
+            if redF{
+                errorMessage += "Red "
+            }
+            
+            if greenF{
+                errorMessage += "Green "
+            }
+            
+            if blueF{
+                errorMessage += "Blue"
+            }
+            print(errorMessage)
         }else{
-            field.text = "Cannot Locate Green Value"
-        }
-        
-        if field.contains("B:" as! UIFocusEnvironment){
-            let bIndex = field.text?.range(of: "B:")
-        }else{
-            field.text = "Cannot Locate Blue Value"
+            slideBarRed.value = newRValue
+            slideBarGreen.value = newGValue
+            slideBarBlue.value = newBValue
+            valueChange(slideBarBlue)
         }
     }
     
@@ -99,6 +180,54 @@ class ViewController: UIViewController {
         default:
             return String(num)
         }
+    }
+    
+    private func letterToNumber(str: String, index:Int) -> Float{
+        //the String will be in the form __ FF -> 255 AF -> 175
+        let index1 = str.index(str.startIndex, offsetBy: index)
+        let index2 = str.index(str.startIndex, offsetBy: index+1)
+        let string1 = String(str[index1])
+        let string2 = String(str[index2])
+        
+        func cases(strg: String) -> Int{
+            switch(strg){
+            case "A":
+                return 10
+            case "B":
+                return 11
+            case "C":
+                return 12
+            case "D":
+                return 13
+            case "E":
+                return 14
+            case "F":
+                return 15
+            default:
+                return Int(strg)!
+            }
+        }
+        
+        let num1 = cases(strg: string1)
+        let num2 = cases(strg: string2)
+        let sum = Double((num1*16)+num2)
+        return Float(sum/255.0)
+    }
+    
+    func updateFromKeyboard(input: String, offsetStart : Int) -> Float{
+        var newValue:Float = 0
+        let index1 = input.index(input.startIndex, offsetBy: offsetStart)
+        let index2 = input.index(input.startIndex, offsetBy: offsetStart+1)
+        let index3 = input.index(input.startIndex, offsetBy: offsetStart+2)
+        if let one = Int(String(input[index1])){
+            if let two = Int(String(input[index2])){
+                if let thr = Int(String(input[index3])){
+                    let total = Double((100*one)+(10*two)+thr)
+                    newValue = Float(total/255.0)
+                }
+            }
+        }
+        return newValue
     }
     
     @IBAction func valueChange(_ sender: UISlider) {
