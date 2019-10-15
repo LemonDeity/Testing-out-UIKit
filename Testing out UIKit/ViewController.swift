@@ -42,8 +42,6 @@ class ViewController: UIViewController {
         slideBarRed.tintColor = .red
         slideBarBlue.tintColor = .blue
         slideBarGreen.tintColor = .green
-        
-        print(slideBarRed.value)
     }
 
    
@@ -266,9 +264,6 @@ class ViewController: UIViewController {
                         let strG = convertToHex(num: numG)
                         let strB = convertToHex(num: numB)
                         let strA = convertToHex(num: numA)
-                        print("Red : \(strR)")
-                        print("Green : \(strG)")
-                        print("Blue : \(strB)")
                         HexCode.text = "#\(strR)\(strG)\(strB)\(strA)"
                         rValue.text = "R : \(numR)"
                         gValue.text = "G : \(numG)"
